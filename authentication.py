@@ -2,6 +2,7 @@ import sqlite3
 import hashlib
 import socket
 import threading
+import pyotp
 from totpgen import totp_register
 
 
