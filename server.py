@@ -2,7 +2,7 @@ import sqlite3
 import hashlib
 import socket
 import threading
-import authentication
+from authentication import authentication
 
 c = 0
 
