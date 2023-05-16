@@ -13,7 +13,7 @@ def auth(c):
         password = c.recv(1024).decode()
         password = hashlib.sha256(password.encode()).hexdigest()
 
-        conn = sqlite3.connect("database.db")
+        conn = sqlite3.connect("userdata.db")
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM userdata WHERE username = ? AND password = ?", (username, password))
