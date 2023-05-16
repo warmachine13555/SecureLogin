@@ -11,7 +11,7 @@ server.bind(("81.169.141.81", 8888))
 
 server.listen()
 
-auth()
+auth(c)
 
 
 
