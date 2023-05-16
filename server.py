@@ -23,8 +23,10 @@ def handle_connection(c):
 
     if cur.fetchall():
         c.send("Login succesful!".encode())
+        print("Login succesful")
     else:
         c.send("Login failed!".encode())
+        print("Login failed")
 
 while True:
     client, addr = server.accept()
