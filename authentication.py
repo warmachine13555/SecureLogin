@@ -4,6 +4,7 @@ import socket
 import threading
 
 
+
 def auth(c):
     for i in range(3):  # Versuche insgesamt 3 Anmeldeversuche
         c.send("Username: ".encode())
@@ -25,3 +26,5 @@ def auth(c):
 
     c.send("Too many tries please retry later".encode())
     c.close()
+
+
