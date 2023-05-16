@@ -2,7 +2,7 @@ import sqlite3
 import hashlib
 import socket
 import threading
-
+from totpgen import totp_register
 
 
 def auth(c):
@@ -20,7 +20,9 @@ def auth(c):
 
         if cur.fetchall():
             c.send("Login successful!".encode())
-            break  # Beenden Sie die Schleife, wenn die Anmeldung erfolgreich war
+            if cur.execute("SELECT * FROM userdata WHERE username = ? AND password = ? AND totp = 0", (username, password)):
+                totp_register()
+
         else:
             c.send("Login failed! Please try again.".encode())
 
