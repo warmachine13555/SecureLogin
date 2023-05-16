@@ -4,7 +4,7 @@ import socket
 import threading
 
 
-def authentication(c):
+def auth(c):
     for i in range(3):  # Versuche insgesamt 3 Anmeldeversuche
         c.send("Username: ".encode())
         username = c.recv(1024).decode()

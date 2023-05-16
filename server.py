@@ -2,7 +2,7 @@ import sqlite3
 import hashlib
 import socket
 import threading
-from authentication import authentication
+from authentication import auth
 
 c = 0
 
@@ -12,7 +12,7 @@ server.bind(("81.169.141.81", 8888))
 
 server.listen()
 
-authentication(c)
+auth(c)
 
 
 
