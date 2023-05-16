@@ -23,3 +23,8 @@ cur.execute("INSERT INTO userdata (username, password, totp) VALUES (?, ?, 0)", 
 cur.execute("INSERT INTO userdata (username, password, totp) VALUES (?, ?, 0)", (username4, password4))
 
 conn.commit()
+
+Uw4ilco7Iv52BsCfjZtB
+AYz5gNViAr608E63FQVH!
+GmqalO5mLY9oHvgCeuq7
+dM4fiGfmpQJRQOpHddoU

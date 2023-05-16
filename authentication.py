@@ -11,8 +11,8 @@ def auth(c):
         c.send("Username: ".encode())
         username = c.recv(1024).decode()
         c.send("Password: ".encode())
-        password = c.recv(1024).decode()
-        password = hashlib.sha256(password.encode()).hexdigest()
+        password = c.recv(1024)
+        password = hashlib.sha256(password).hexdigest()
 
         conn = sqlite3.connect("userdata.db")
         cur = conn.cursor()
@@ -21,8 +21,12 @@ def auth(c):
 
         if cur.fetchall():
             c.send("Login successful!".encode())
-            if cur.execute("SELECT * FROM userdata WHERE username = ? AND password = ? AND totp = 0", (username, password)):
-                totp_register()
+            if cur.execute("SELECT * FROM userdata WHERE username = ? AND password = ? AND totp = 0", (username,
+                                                                                                     password)):
+                totp_register(c)
+                c.send("Enter MFA Code: ".encode())
+                mfa_code = c.recv(1024).decode()
+                print(mfa_code)
 
         else:
             c.send("Login failed! Please try again.".encode())

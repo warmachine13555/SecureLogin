@@ -1,13 +1,14 @@
 import time
 import pyotp
 import qrcode
+import socket
+import threading
 
 
-def totp_register():
+def totp_register(c):
     key = pyotp.random_base32()  # Generate a random base32 key
 
     print(key)
-
 
     totp = pyotp.TOTP(key)
 
@@ -20,5 +21,8 @@ def totp_register():
 
     totp = pyotp.TOTP(key)
 
-    while True:
-        print(totp.verify(input("Enter code:")))
+    #while True:
+        #c.send("Enter MFA Code: ".encode())
+        #mfa_code = c.recv(1024).decode()
+        #verify = totp.verify(mfa_code)
+        #print(verify)
