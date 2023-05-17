@@ -5,24 +5,21 @@ import socket
 import threading
 
 
-def totp_register(c):
-    key = pyotp.random_base32()  # Generate a random base32 key
 
-    print(key)
+key = pyotp.random_base32()  # Generate a random base32 key
 
-    totp = pyotp.TOTP(key)
+print(key)
 
-    uri = totp.provisioning_uri(name="Benjamin", issuer_name="Online Banking")
+totp = pyotp.TOTP(key)
 
-    # Manually append the TOTP period to the URI
-    uri += "&period=30"
+uri = totp.provisioning_uri(name="Benjamin", issuer_name="Online Banking")
 
-    qrcode.make(uri).save("totp.png")
+# Manually append the TOTP period to the URI
+uri += "&period=30"
 
-    totp = pyotp.TOTP(key)
+qrcode.make(uri).save("totp.png")
 
-    #while True:
-        #c.send("Enter MFA Code: ".encode())
-        #mfa_code = c.recv(1024).decode()
-        #verify = totp.verify(mfa_code)
-        #print(verify)
+totp = pyotp.TOTP(key)
+
+while True:
+    print(totp.verify(input("Enter code: ")))
