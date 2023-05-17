@@ -17,9 +17,12 @@ username1, password1 = "mike", hashlib.sha256("mikepassword".encode()).hexdigest
 username2, password2 = "anna", hashlib.sha256("annapassword".encode()).hexdigest()
 username3, password3 = "ben", hashlib.sha256("benpassword".encode()).hexdigest()
 username4, password4 = "andi", hashlib.sha256("andipassword".encode()).hexdigest()
-cur.execute("INSERT INTO userdata (username, password, totp) VALUES (?, ?, 0)", (username1, password1))
-cur.execute("INSERT INTO userdata (username, password, totp) VALUES (?, ?, 0)", (username2, password2))
-cur.execute("INSERT INTO userdata (username, password, totp) VALUES (?, ?, 0)", (username3, password3))
-cur.execute("INSERT INTO userdata (username, password, totp) VALUES (?, ?, 0)", (username4, password4))
+
+totp_empty = ""
+
+cur.execute("INSERT INTO userdata (username, password, totp) VALUES (?, ?, ?)", (username1, password1, totp_empty))
+cur.execute("INSERT INTO userdata (username, password, totp) VALUES (?, ?, ?)", (username2, password2, totp_empty))
+cur.execute("INSERT INTO userdata (username, password, totp) VALUES (?, ?, ?)", (username3, password3, totp_empty))
+cur.execute("INSERT INTO userdata (username, password, totp) VALUES (?, ?, ?)", (username4, password4, totp_empty))
 
 conn.commit()
