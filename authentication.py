@@ -24,9 +24,6 @@ def auth(c):
             if cur.execute("SELECT * FROM userdata WHERE username = ? AND password = ? AND totp = 0", (username,
                                                                                                      password)):
                 totp_register(c)
-                c.send("Enter MFA Code: ".encode())
-                mfa_code = c.recv(1024).decode()
-                print(mfa_code)
 
         else:
             c.send("Login failed! Please try again.".encode())
