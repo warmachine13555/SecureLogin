@@ -6,9 +6,9 @@ import qrcode
 
 def auth(c):
     for i in range(3):
-        c.send("Username: ".encode())
+        c.send("Username ".encode())
         username = c.recv(1024).decode()
-        c.send("Password: ".encode())
+        c.send("Password ".encode())
         password = c.recv(1024)
         password = hashlib.sha256(password).hexdigest()
 
@@ -36,7 +36,7 @@ def auth(c):
 
                 qrcode.make(uri).save("totp.png")
 
-                c.send("You do not have MFA set up. Here is the QR Code scan it and then enter MFA Code: ".encode())
+                c.send("You do not have MFA set up. Here is the QR Code scan it and then enter MFA Code. ".encode())
                 mfa_code = c.recv(1024).decode().strip()
                 verify = totp.verify(mfa_code)
                 print(verify)
@@ -56,7 +56,7 @@ def auth(c):
 
                 totp = pyotp.TOTP(key)
 
-                c.send("Enter MFA Code: ".encode())
+                c.send("Enter MFA Code. ".encode())
                 mfa_code = c.recv(1024).decode().strip()
                 verify = totp.verify(mfa_code)
 
