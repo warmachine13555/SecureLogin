@@ -20,10 +20,10 @@ def auth(c):
 
         if result:
             c.send("Username and password correct! Now you need to verify your MFA code. Look on your phone, please.".encode())
-            totp = result[3]  # Assuming the totp column is at index 2 in the userdata table
+            totp = result[3]
             print(f"Hi {result[3]}")
             if not totp:
-                # Handle the case when totp is equal to 0
+
                 key = pyotp.random_base32()
 
                 print(key)
@@ -51,8 +51,7 @@ def auth(c):
                     c.send("MFA Code invalid. Please try again.".encode())
 
             else:
-                # Handle the case when totp is not equal to 0
-                key = result[3]  # Assuming the totp_key column is at index 3 in the userdata table
+                key = result[3]
 
                 totp = pyotp.TOTP(key)
 

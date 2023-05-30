@@ -9,6 +9,6 @@ server.bind(("localhost", 7777))
 server.listen()
 
 
-while True: #listened auf den Port
+while True:
     client, addr = server.accept()
     threading.Thread(target=auth, args=(client,)).start()
